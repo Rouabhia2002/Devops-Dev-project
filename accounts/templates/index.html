@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-dismissible alert-success">
+    <strong>{{message}}</strong>
+</div>
+{% endfor %}
+{% endif %}
+
+{% if user.is_authenticated %}
+<h2 style="margin: 50px; text-decoration: underline;" class="text-center">Registred users</h2>
+{% for user in users %}
+<div style="margin-bottom: 30px;">
+    <div class="card-body">
+        <h4 class="card-title">username : {{user.username}}</h4>
+        <hr>
+    </div>
+</div>
+
+{% endfor %}
+{% if not user.registration_token %}
+
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script type="module" src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+
+<!-- Add the Firebase products that you want to use -->
+<script type="module" src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.1.3/firebase-messaging.js"></script>
+
+<!-- Initialize Firebase -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
+            import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-messaging.js";
+        
+            const firebaseConfig = {
+                apiKey: "AIzaSyCdCZI8Ks3vFvI8-2BUN0IfjQ2LbcnLoGg",
+                authDomain: "push-notification-7d190.firebaseapp.com",
+                projectId: "push-notification-7d190",
+                storageBucket: "push-notification-7d190.appspot.com",
+                messagingSenderId: "35673809462",
+                appId: "1:35673809462:web:5e73053ff895e2d9212e97",
+                measurementId: "G-C64BTJF4TV"
+            };
+        
+            const app = initializeApp(firebaseConfig);
+            const messaging = getMessaging(app);
+
+            getToken(messaging, {
+                vapidKey: 'BE8tkOqJ3hdhFGodlILYfiVBc9PRablnXCmvVZiJGY3ist86r8VYz-g94Yk7HbSLmytLxFij5yrn-JVx9kssLH8'
+            })
+            .then((currentToken) => {
+                if (currentToken) {
+                    console.log('Notification permission granted.');
+                    console.log(currentToken);
+        
+                    fetch('http://127.0.0.1:8000/save_token', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            token: currentToken
+                        })
+                    })
+                    .then((response) => response.json())
+                    .then(result => {
+                        if (result["success"] === true) {
+                            console.log('Token saved successfully.');
+                        } else {
+                            console.log('An error occurred while saving the token.');
+                        }
+                    })
+                    .catch((error) => {
+                        console.log('An error occurred while saving the token.', error);
+                    });
+                } else {
+                    console.log('No registration token available. Request permission to generate one.');
+                }
+            })
+            .catch((err) => {
+                console.log('An error occurred while retrieving token. ', err);
+            });
+        </script>
+        <script src="{% static 'firebase-messaging-sw.js' %}"></script>
+{% endif %}
+{% else %}
+
+<h2 style="margin: 50px; text-decoration: underline;" class="text-center">Login to view all registred users !</h2>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Execute Script</title>
+</head>
+<body>
+    <h1>Execute Script</h1>
+    <form action="{% url 'create_instance' %}" method="POST">
+        {% csrf_token %}
+        <label for="instance_name">Instance Name:</label>
+        <input type="text" id="instance_name" name="instance_name"><br><br>
+        <input type="submit" value="Execute">
+    </form>
+</body>
+</html>

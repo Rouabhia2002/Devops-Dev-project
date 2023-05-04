@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Run Script Button</title>
+</head>
+<body>
+    <form action="{% url 'script' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Run Script</button>
+    </form>
+</body>
+</html>
+
+
+
+
