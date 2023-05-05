@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Get CPU Utilization Metrics</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+      }
+      label {
+        margin-right: 10px;
+      }
+      input[type="text"] {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        box-shadow: 1px 1px 5px #ccc;
+        width: 300px;
+      }
+      button[type="submit"] {
+        padding: 10px 20px;
+        background-color: #0099ff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      button[type="submit"]:hover {
+        background-color: #0077cc;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Get CPU Utilization Metrics</h1>
+    <form method="POST" action="{% url 'get_instance_metrics' %}">
+      {% csrf_token %}
+      <label for="instance_name">Instance Name:</label>
+      <input type="text" id="instance_name" name="instance_name">
+      <button type="submit">Get Metrics</button>
+    </form>
+  </body>
+</html>

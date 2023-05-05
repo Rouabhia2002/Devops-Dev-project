@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete EC2 Instance</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+        h1 {
+            font-size: 36px;
+            color: #444444;
+            margin-bottom: 30px;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px #999999;
+            width: 500px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #cccccc;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <h1>Delete EC2 Instance</h1>
+    <form action="{% url 'delete_ec2_instance' %}" method="POST">
+        {% csrf_token %}
+        <label for="instance_name">Instance Name:</label>
+        <input type="text" id="instance_name" name="instance_name"><br><br>
+        <input type="submit" value="Delete Instance">
+    </form>
+</body>
+</html>

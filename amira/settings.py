@@ -77,16 +77,37 @@ WSGI_APPLICATION = 'amira.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'mydatabase',
+#        'USER': 'myuser',
+#        'PASSWORD': 'mypassword',
+#        'HOST': 'localhost',
+#        'PORT': '3306',
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydatabase',
-        'USER': 'myuser',
-        'PASSWORD': 'mypassword',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': '',
+        'USER': 'postgres',
+        'PASSWORD': 'Rouabhia19701970narcos',
+        'HOST': 'instances.cwtwgwgdsvxg.eu-west-3.rds.amazonaws.com',
+        'PORT': '5432'
     }
 }
+#DATABASES = {
+ #   'default': {
+  #      'ENGINE': 'django.db.backends.postgresql_psycopg2',
+   #     'NAME': 'usersDB', 
+    #    'USER': 'Nouara', 
+     #   'PASSWORD': 'rouabhia5087',
+      #  'HOST': 'localhost', 
+       # 'PORT': '5433',
+    #}
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -135,3 +156,30 @@ import os
 #STATICFILES_DIRS = [
 #    os.path.join(BASE_DIR, 'static'),
 #]
+
+
+
+import os
+
+# Read the AWS access keys from the credentials file
+aws_access_key_id = None
+aws_secret_access_key = None
+
+credentials_file = os.path.expanduser("~/.aws/credentials")
+
+if os.path.isfile(credentials_file):
+    with open(credentials_file, "r") as f:
+        lines = f.readlines()
+        for line in lines:
+            if line.startswith("aws_access_key_id"):
+                aws_access_key_id = line.split("=")[1].strip()
+            elif line.startswith("aws_secret_access_key"):
+                aws_secret_access_key = line.split("=")[1].strip()
+
+# Django settings
+...
+
+# AWS settings
+AWS_ACCESS_KEY_ID = aws_access_key_id
+AWS_SECRET_ACCESS_KEY = aws_secret_access_key
+AWS_REGION = 'us-west-2'  # Example region, replace with your own
