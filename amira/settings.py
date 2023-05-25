@@ -88,16 +88,24 @@ WSGI_APPLICATION = 'amira.wsgi.application'
 #    }
 #}
 
+#DATABASES = {
+   # 'default': {
+  #      'ENGINE': 'django.db.backends.postgresql',
+ #       'NAME': '',
+ #       'USER': 'postgres',
+ #       'PASSWORD': 'Rouabhia19701970narcos',
+#        'HOST': 'instances.cwtwgwgdsvxg.eu-west-3.rds.amazonaws.com',
+#        'PORT': '5432'
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '',
-        'USER': 'postgres',
-        'PASSWORD': 'Rouabhia19701970narcos',
-        'HOST': 'instances.cwtwgwgdsvxg.eu-west-3.rds.amazonaws.com',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 #DATABASES = {
  #   'default': {
   #      'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -183,3 +191,10 @@ if os.path.isfile(credentials_file):
 AWS_ACCESS_KEY_ID = aws_access_key_id
 AWS_SECRET_ACCESS_KEY = aws_secret_access_key
 AWS_REGION = 'us-west-2'  # Example region, replace with your own
+
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    # Add the absolute path to your 'static' directory
+    os.path.join(BASE_DIR, 'static'),
+]

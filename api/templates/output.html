@@ -5,13 +5,20 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+            background-color: #719dcf;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
             padding: 20px;
         }
 
         h1 {
-            font-size: 36px;
+            font-size: 48px;
             margin-bottom: 20px;
+            color: #ffffff;
+            text-align: center;
         }
 
         pre {
@@ -20,20 +27,22 @@
             padding: 10px;
             white-space: pre-wrap;
             word-wrap: break-word;
-            font-size: 14px;
+            font-size: 18px;
             line-height: 1.4;
             overflow-x: auto;
             max-width: 100%;
+            margin-bottom: 10px;
         }
 
-        pre + pre {
-            margin-top: 10px;
+        pre.success {
+            color: #008000;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h1>Script Output</h1>
-    <pre>{{ output }}</pre>
+    <h1>Success Message:</h1>
+    <pre class="success">{{ output }}</pre>
     <pre>{{ error }}</pre>
 </body>
 </html>

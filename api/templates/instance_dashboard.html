@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Instance Dashboard</title>
+</head>
+<body>
+    <h1>Instance Dashboard</h1>
+
+    <form id="instanceForm" method="POST" action="{% url 'get_instance_statistics' %}">
+        {% csrf_token %}
+        <label for="instanceName">Instance Name:</label>
+        <input type="text" id="instanceName" name="instance_name"><br><br>
+        <button type="submit" id="getStatisticsBtn">Get Statistics</button>
+      </form>
+      
+
+    <div id="statisticsDiv" style="display: none;">
+      <h2>Instance Statistics</h2>
+      <p><strong>Instance ID:</strong> <span id="instanceId"></span></p>
+      <p><strong>Instance Name:</strong> <span id="instanceNameSpan"></span></p>
+      <p><strong>Average CPU Utilization:</strong> <span id="averageCpu"></span>%</p>
+      <p><strong>Average Network In:</strong> <span id="averageNetworkIn"></span> bytes</p>
+      <p><strong>Average Network Out:</strong> <span id="averageNetworkOut"></span> bytes</p>
+    </div>
+</body>
+</html>

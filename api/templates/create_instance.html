@@ -54,10 +54,26 @@
         input[type=submit]:hover {
             background-color: #3e8e41;
         }
+
+        .error-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(250, 248, 248);
+    background-color: red;
+    font-size: 25px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
     </style>
 </head>
 <body>
     <h1>Create Instance</h1>
+    {% if error_message %}
+        <h2 class="error-message">{{ error_message }}</h2>
+    {% endif %}
     <form action="{% url 'create_instance' %}" method="POST">
         {% csrf_token %}
         <label for="instance_name">Instance Name:</label>

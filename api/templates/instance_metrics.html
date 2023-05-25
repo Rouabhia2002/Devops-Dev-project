@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Get CPU Utilization Metrics</title>
+    <title>Get CPU Utilization of the Instance</title>
     <style>
       body {
         font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
+        background-color: #6ddde0;
       }
       h1 {
         text-align: center;
@@ -44,12 +44,12 @@
     </style>
   </head>
   <body>
-    <h1>Get CPU Utilization Metrics</h1>
+    <h1>Get CPU Utilization of instance</h1>
     <form method="POST" action="{% url 'get_instance_metrics' %}">
       {% csrf_token %}
       <label for="instance_name">Instance Name:</label>
       <input type="text" id="instance_name" name="instance_name">
-      <button type="submit">Get Metrics</button>
+      <button type="submit">Get the statistics</button>
     </form>
   </body>
 </html>

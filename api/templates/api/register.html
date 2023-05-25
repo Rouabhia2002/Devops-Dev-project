@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <title>S'inscrire</title>
+</head>
+<body>
+
+    <section>
+        
+        <form action="/auth/register" method="POST">
+        <div class="form-box">
+            <div class="form-value">
+                <form action="">
+                    <h2>S'inscrire</h2>
+                    <div class="inputbox">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <input type="name" id="name" name="name" required>
+                        <label for="name">Nom</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" id="password" name="password" required>
+                        <label for="password">Mot de passe</label>                        
+                    </div>
+                    <button type="submit">S'inscrire</button>
+                    <div class="login">
+                        <p>Vous avez un compte <a href="/auth/login">Connectez-vous</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </form>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
